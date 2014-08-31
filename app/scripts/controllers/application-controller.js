@@ -1,11 +1,7 @@
-app.controller('ApplicationController',
-    function ($rootScope, $scope, USER_ROLES, AuthService, AUTH_EVENTS, $timeout) {
+app.controller('ApplicationController', function ($rootScope, $scope, RouteHandlerService) {
 
-  $scope.currentUser = null;
-  $scope.userRoles = USER_ROLES;
-  $scope.isAuthorized = AuthService.isAuthorized;
-
-  $scope.setCurrentUser = function (user) {
-    $scope.currentUser = user;
-  };
+    $rootScope.$on('$stateChangeStart',
+    function(event, toState, toParams, fromState, fromParams){
+        RouteHandlerService.setRouteParams(event, toState, toParams, fromState, fromParams);
+    })
 })

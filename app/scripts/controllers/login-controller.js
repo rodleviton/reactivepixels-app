@@ -11,9 +11,14 @@ app.controller('LoginController', function($scope, $rootScope, AUTH_EVENTS, $loc
         AuthService.login(provider, $scope.user).then(function(auth) {
             SessionService.create(auth.id, auth.uid, auth.firebaseAuthToken);
 
-            UserService.findByUID(auth.uid).then(function(user) {
-                $location.path('/' + user.username);
-            });
+            if(auth.provider === 'password') {
+                UserService.findByUID(auth.uid).then(function(user) {
+                    $location.path('/' + user.username);
+                });
+            } else {
+                console.log(auth);
+            }
+
 
             $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
 

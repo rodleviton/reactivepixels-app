@@ -1,7 +1,7 @@
 'use strict';
 
 app.factory('AuthService',
-    function($firebaseSimpleLogin, FIREBASE_URL, SessionService, debug, $timeout) {
+    function($firebaseSimpleLogin, FIREBASE_URL, SessionService) {
         var authService = {};
 
 
@@ -33,7 +33,7 @@ app.factory('AuthService',
         };
 
         authService.logout = function() {
-            auth.$logout();
+            return auth.$logout();
         };
 
         authService.getCurrentUser = function() {
@@ -43,15 +43,6 @@ app.factory('AuthService',
         authService.isAuthenticated  = function() {
             return auth.user !== null;
         };
-
-        authService.isAuthorized = function (authorizedRoles) {
-            if (!app.isArray(authorizedRoles)) {
-              authorizedRoles = [authorizedRoles];
-            }
-            return (authService.isAuthenticated() &&
-              authorizedRoles.indexOf(Session.userRole) !== -1);
-        };
-
 
         return authService;
     });

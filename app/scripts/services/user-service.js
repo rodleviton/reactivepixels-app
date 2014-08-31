@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('UserService', function($q, $firebase, $timeout, $firebaseSimpleLogin, FIREBASE_URL, debug) {
+app.factory('UserService', function($q, $firebase, $firebaseSimpleLogin, FIREBASE_URL) {
     var ref = new Firebase(FIREBASE_URL + 'users');
     var currentUser;
 
@@ -10,24 +10,17 @@ app.factory('UserService', function($q, $firebase, $timeout, $firebaseSimpleLogi
             var deferred = $q.defer();
 
             var userRef = {
-              md5_hash: user.md5_hash,
-              firstname: firstname,
-              lastname: lastname,
-              displayName: firstname + ' ' + lastname,
-              role: 'registered',
-              username: username
+                md5_hash: user.md5_hash,
+                firstname: firstname,
+                lastname: lastname,
+                displayName: firstname + ' ' + lastname,
+                username: username
             }
 
             ref.child(username).setWithPriority(userRef, user.uid, function(result) {
-              // Debug
-              // if(debug) {
-              //   console.log('- services/user-service.js');
-              //   console.log('Extended profile details have been written');
-              //   console.log('---------------------------------');
-              // }
-              // if(result === null) {
-              //   deferred.resolve();
-              // }
+                if (result === null) {
+                    deferred.resolve();
+                }
             });
 
             return deferred.promise;
@@ -35,26 +28,19 @@ app.factory('UserService', function($q, $firebase, $timeout, $firebaseSimpleLogi
 
         // Returns User object by username
         findByUsername: function(username) {
-          return $firebase( ref.child(username) ).$asObject().$loaded();
+            return $firebase(ref.child(username)).$asObject().$loaded();
         },
 
         // Returns User object by uid
         findByUID: function(uid) {
-          var deferred = $q.defer();
+            var deferred = $q.defer();
 
-          ref.startAt(uid).endAt(uid).once('value', function(snapshot) {
-            var user = snapshot.val();
-            deferred.resolve(user[Object.keys(snapshot.val())]);
+            ref.startAt(uid).endAt(uid).once('value', function(snapshot) {
+                var user = snapshot.val();
+                deferred.resolve(user[Object.keys(snapshot.val())]);
+            });
 
-            // Debug
-            // if(debug) {
-            //   console.log('services/user-service.js');
-            //   console.log( user[Object.keys(snapshot.val())] );
-            //   console.log('---------------------------------')
-            // }
-          });
-
-          return deferred.promise;
+            return deferred.promise;
         }
     };
 

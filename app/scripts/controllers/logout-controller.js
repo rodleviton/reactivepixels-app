@@ -1,6 +1,7 @@
 'use strict';
 
-app.controller('LogoutController', function($scope, AuthService) {
-    console.log('Logging user out');
+app.controller('LogoutController', function(AuthService, $location, SessionService) {
+    SessionService.destroy();
     AuthService.logout();
+    $location.path('/');
 });
