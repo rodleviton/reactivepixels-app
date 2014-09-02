@@ -61,24 +61,44 @@
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-md5/angular-md5.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/application-controller.js"></script>
-        <script src="scripts/controllers/login-controller.js"></script>
-        <script src="scripts/controllers/logout-controller.js"></script>
-        <script src="scripts/controllers/registration-controller.js"></script>
-        <script src="scripts/controllers/private-controller.js"></script>
-        <script src="scripts/controllers/profile-controller.js"></script>
-        <script src="scripts/services/auth-service.js"></script>
-        <script src="scripts/services/session-service.js"></script>
-        <script src="scripts/services/user-service.js"></script>
-        <script src="scripts/services/route-handler-service.js"></script>
-        <script src="scripts/services/response-service.js"></script>
-        <script src="scripts/services/auth-interceptor.js"></script>
-        <script src="scripts/directives/notification-dialog-directive.js"></script>
+        <script src="app.js"></script>
+        <script src="application-controller.js"></script>
+
+        <!-- Login -->
+        <script src="sections/login/login.js"></script>
+        <script src="sections/login/login-controller.js"></script>
+
+        <!-- Logout -->
+        <script src="sections/logout/logout.js"></script>
+        <script src="sections/logout/logout-controller.js"></script>
+
+        <!-- Profile -->
+        <script src="sections/profile/profile.js"></script>
+        <script src="sections/profile/profile-controller.js"></script>
+        <script src="sections/profile/profile-private/profile-private-controller.js"></script>
+
+        <!-- Registration -->
+        <script src="sections/registration/registration.js"></script>
+        <script src="sections/registration/registration-controller.js"></script>
+
+        <!-- Build -->
+        <script src="sections/build/build.js"></script>
+        <script src="sections/build/build-controller.js"></script>
+
+        <!-- Services -->
+        <script src="services/auth-service.js"></script>
+        <script src="services/session-service.js"></script>
+        <script src="services/user-service.js"></script>
+        <script src="services/route-handler-service.js"></script>
+        <script src="services/response-service.js"></script>
+
+        <!-- Directives -->
+        <script src="components/notification-dialog/notification-dialog-directive.js"></script>
         <!-- endbuild -->
 </body>
 </html>

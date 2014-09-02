@@ -15,7 +15,8 @@
     "angular-animate": "1.2.16",
     "angular-touch": "1.2.16",
     "bootstrap-social": "~4.6.1",
-    "angular-ui-router": "~0.2.11"
+    "angular-ui-router": "~0.2.11",
+    "angular-md5": "~0.1.7"
   },
   "devDependencies": {
     "angular-mocks": "1.2.16",

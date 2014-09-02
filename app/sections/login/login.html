@@ -1,0 +1,54 @@
+<div class="container">
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h2 class="panel-title">Sign in</h2>
+    </div>
+    <div class="panel-body">
+      <div ng-show="success" class="alert alert-success" role="alert">
+        <p>{{success}}</p>
+      </div>
+      <div ng-show="error" class="alert alert-danger" role="alert">
+        <p>{{error}}</p>
+      </div>
+      <form class="form-signin clearfix" ng-submit="login('password')">
+
+        <div class="form-group" ng-class="{'has-error' : error}">
+          <label for="userEmail" class="sr-only">Email address</label>
+          <input id="userEmail" ng-model="user.email" type="email" class="form-control" placeholder="Email address" required="" autofocus="">
+        </div>
+        <div class="form-group" ng-class="{'has-error' : error}">
+          <label for="userPassword" class="sr-only">Password</label>
+          <input type="password" ng-model="user.password" class="form-control" placeholder="Password" required="">
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="user.rememberMe" value="remember-me"> Remember me
+          </label>
+        </div>
+
+        <div class="progress">
+          <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%">
+          </div>
+        </div>
+        <button class="btn btn-primary pull-right" type="submit">Sign in</button>
+      </form>
+
+      <hr />
+
+      <div class="well">
+        <a class="btn btn-sm btn-social btn-google-plus" ng-click="login('google')">
+          <i class="fa fa-google-plus"></i>
+          Sign in with Google
+        </a>
+
+        <a class="btn btn-sm btn-social btn-facebook" ng-click="login('facebook')">
+          <i class="fa fa-facebook"></i>
+          Sign in with Facebook
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+</div>
