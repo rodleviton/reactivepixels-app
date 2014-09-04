@@ -2,6 +2,7 @@
   "name": "auth",
   "version": "0.0.0",
   "dependencies": {
+    "ng-file-upload-shim": "~1.6.5",
     "angular": "1.2.16",
     "firebase": "~1.0.21",
     "angularfire": "~0.8.0",
@@ -16,7 +17,8 @@
     "angular-touch": "1.2.16",
     "bootstrap-social": "~4.6.1",
     "angular-ui-router": "~0.2.11",
-    "angular-md5": "~0.1.7"
+    "ng-file-upload": "~1.6.5",
+    "xml2json": "~1.1.1"
   },
   "devDependencies": {
     "angular-mocks": "1.2.16",

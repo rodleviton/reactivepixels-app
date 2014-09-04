@@ -22,6 +22,10 @@ app.directive('notificationDialog', function (AUTH_EVENTS) {
       scope.$on(AUTH_EVENTS.notValidUser, function() {
         showDialog(AUTH_EVENTS.notValidUser);
       });
+
+      scope.$on(AUTH_EVENTS.notAuthenticated, function() {
+        showDialog(AUTH_EVENTS.notAuthenticated);
+      });
     }
   };
 })

@@ -42,8 +42,6 @@ app.factory('AuthService',
             // Check if existing user session exists
             if (SessionService.user.authToken !== undefined) {
 
-                console.log('User authenticated from exisiting Session Data');
-                console.log(SessionService.user);
                 deferred.resolve(SessionService.user);
 
             } else {
@@ -53,12 +51,9 @@ app.factory('AuthService',
 
                     if (auth) {
 
-                        console.log('User authenticated');
                         deferred.resolve(auth);
 
                     } else {
-
-                        console.log('User not authenticated');
 
                         // User not authenticated
                         deferred.resolve(false);

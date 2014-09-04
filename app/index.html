@@ -18,7 +18,7 @@
     <!-- endbuild -->
   </head>
   <body ng-app="app" ng-controller="ApplicationController">
-    <!--[if lt IE 7]>
+    <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
@@ -37,6 +37,7 @@
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/ng-file-upload-shim/angular-file-upload-shim.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/firebase/firebase.js"></script>
     <script src="bower_components/firebase-simple-login/firebase-simple-login.js"></script>
@@ -61,7 +62,8 @@
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="bower_components/angular-md5/angular-md5.js"></script>
+    <script src="bower_components/ng-file-upload/angular-file-upload.js"></script>
+    <script src="bower_components/xml2json/xml2json.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -90,15 +92,24 @@
         <script src="sections/build/build.js"></script>
         <script src="sections/build/build-controller.js"></script>
 
+        <!-- Upload -->
+        <script src="sections/upload/upload.js"></script>
+        <script src="sections/upload/upload-controller.js"></script>
+
         <!-- Services -->
         <script src="services/auth-service.js"></script>
         <script src="services/session-service.js"></script>
         <script src="services/user-service.js"></script>
         <script src="services/route-handler-service.js"></script>
         <script src="services/response-service.js"></script>
+        <script src="services/signed-request-service.js"></script>
 
         <!-- Directives -->
         <script src="components/notification-dialog/notification-dialog-directive.js"></script>
+        <script src="components/login-form/login-form-directive.js"></script>
+        <script src="components/registration-form/registration-form-directive.js"></script>
+        <script src="components/file-upload/file-upload-directive.js"></script>
+        <!-- <script src="components/upload-form/upload-form-directive.js"></script>-->
         <!-- endbuild -->
 </body>
 </html>

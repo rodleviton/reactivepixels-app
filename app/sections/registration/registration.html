@@ -5,31 +5,8 @@
       <h2 class="panel-title">Register</h2>
     </div>
     <div class="panel-body">
-      <div ng-show="success" class="alert alert-success" role="alert">
-        <p>{{success}}</p>
-      </div>
-      <div ng-show="error" class="alert alert-danger" role="alert">
-        <p>{{error}}</p>
-      </div>
-      <form class="clearfix" ng-submit="register()">
 
-        <div class="form-group" ng-class="{'has-error' : error}">
-          <label for="userEmail" class="sr-only">Email address</label>
-          <input id="userEmail" ng-model="user.email" type="email" class="form-control" placeholder="Email address" required="true" autofocus="">
-        </div>
-
-        <div class="form-group" ng-class="{'has-error' : error}">
-          <label for="userPassword" class="sr-only">Password</label>
-          <input type="password" ng-model="user.password" class="form-control" placeholder="Password" required="true">
-        </div>
-
-        <div class="progress">
-          <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%">
-          </div>
-        </div>
-
-        <button class="btn btn-primary pull-right" type="submit">Register</button>
-      </form>
+      <registration-form></registration-form>
 
     </div>
   </div>

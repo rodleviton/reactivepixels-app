@@ -33,7 +33,7 @@ angular.module('app.profile', ['ui.router'])
 
                             } else {
 
-                                if (RouteHandlerService.getRouteParams() === undefined) {
+                                if ((RouteHandlerService.getRouteParams().fromState.name === undefined) || (RouteHandlerService.getRouteParams().fromState.name === '')) {
 
                                     // Take use to login page
                                     $location.path('/');
@@ -53,6 +53,11 @@ angular.module('app.profile', ['ui.router'])
                     }
                 }
             })
+            .state('profile.home', {
+                url: '/home',
+                templateUrl: 'sections/profile/profile-home/profile-home.html',
+                controller: 'ProfileController'
+            })
             .state('profile.portfolio', {
                 url: '/portfolio',
                 templateUrl: 'sections/profile/profile-portfolio/profile-portfolio.html',
@@ -69,13 +74,13 @@ angular.module('app.profile', ['ui.router'])
 
                         UserService.findByUID(isAuthenticated.uid).then(function(user) {
 
-                            if(user.username === $stateParams.username) {
+                            if((user !== undefined) && (user.username === $stateParams.username)) {
 
                                 deferred.resolve();
 
                             } else {
 
-                                if (RouteHandlerService.getRouteParams() === undefined) {
+                                if ((RouteHandlerService.getRouteParams().fromState.name === undefined) || (RouteHandlerService.getRouteParams().fromState.name === '')) {
 
                                     // Take use to login page
                                     $location.path('/');
