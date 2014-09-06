@@ -1,1 +1,8 @@
 <input type="file" class="form-control" ng-file-select="onFileSelect($files)" required="true">
+<hr />
+
+<div class="progress">
+  <div class="progress-bar progress-bar-striped active" role="progressbar" style="width:{{progress}}%; text-align: left;">
+     <span style="margin-left: 10px;">{{progress}}%</span>
+  </div>
+</div>

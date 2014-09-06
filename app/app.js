@@ -25,7 +25,8 @@ app = angular
         'ngResource',
         'ui.router',
         'ngSanitize',
-        'ngTouch'
+        'ngTouch',
+        'uuid4'
     ])
     .run(function($rootScope, $location, $state, RouteHandlerService) {
         $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {

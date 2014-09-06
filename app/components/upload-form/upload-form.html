@@ -1,33 +1,3 @@
-<div id="upload-form">
-  <div class="alert alert-success" ng-show="complete" role="alert" style="margin-bottom: 0;">
-     <strong>Well done!</strong>
-     <p>Upload is now complete</p>
-  </div>
+<div id="upload-form" ng-transclude>
 
-  <hr />
-
-  <div class="form-group">
-      <label for="imageTitle" class="sr-only">Image title</label>
-      <input id="imageTitle" ng-model="image.title" type="text" class="form-control" placeholder="Image title" required="true" autofocus="true">
-  </div>
-  <div class="form-group">
-     <label for="photos" class="sr-only">Upload image</label>
-
-
-  </div>
-
-  <!-- <img ng-show="thumbnail" style="width: 200px;" ng-src="{{thumbnail}}" class="img-thumbnail ng-hide"> -->
-
-  <div class="gallery-cropper">
-    <div class="cropMain"></div>
-    <div class="cropSlider"></div>
-  </div>
-<button class="btn btn-primary" id="crop">Crop</button>
-  <hr />
-
-  <div class="progress">
-      <div class="progress-bar progress-bar-striped active" role="progressbar" style="width:{{progress}}%; text-align: left;">
-         <span style="margin-left: 10px;">{{progress}}%</span>
-      </div>
-   </div>
 </div>

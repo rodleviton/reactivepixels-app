@@ -7,6 +7,9 @@ app.factory('SignedRequestService', function($q, $firebase, FIREBASE_URL) {
 
     SignedRequest.get = function(fileType, username, token) {
 
+        // Signed Request Url
+        var signedRequestsRef = new Firebase("https://reactivepixels.firebaseio.com/users/" + username + '/signed-requests/' );
+
         var deferred = $q.defer();
 
         // New signed request
@@ -14,10 +17,20 @@ app.factory('SignedRequestService', function($q, $firebase, FIREBASE_URL) {
             fileType: fileType,
             username: username,
             token: token
-        }, function(response) {
+        });
 
-            // If Error
-            deferred.resolve(response);
+        // Wait for signed request to be returned to user
+        signedRequestsRef.on('child_added', function(childSnapshot) {
+
+            // Only grab the signed request we are after
+            if (childSnapshot.val().id == token) {
+
+                deferred.resolve( childSnapshot.val() );
+
+                // Clean up the database
+                signedRequestsRef.child( childSnapshot.val().id ).remove();
+
+            }
 
         });
 
