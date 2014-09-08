@@ -21,12 +21,12 @@ app.directive('fileUpload', function($upload, SignedRequestService, ImageUploadS
                     });
 
                 }
+
             }
 
             /*
              * Upload the file
              */
-
              var uploadFile = function(s3Params) {
 
                 // Start uploading the image

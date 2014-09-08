@@ -2,29 +2,30 @@
 
 app.factory('UserService', function($q, $firebase, $firebaseSimpleLogin, FIREBASE_URL) {
     var ref = new Firebase(FIREBASE_URL + 'users');
-
     var User = {}
 
-    User.create = function(user, username, firstname, lastname, avatar) {
+    User.create = function(user) {
 
         var deferred = $q.defer();
         var email;
 
 
         if(user.provider === 'password') {
+
             email = user.email;
+
         } else {
 
-            // Third Party Providers
+            // Third Party Providers (Google, Facebook)
             email = user.thirdPartyUserData.email;
         }
 
         var userRef = {
-            username: username,
-            displayName: firstname + ' ' + lastname,
-            firstname: firstname,
-            lastname: lastname,
-            avatar: avatar,
+            username: user.username,
+            displayName: user.firstname + ' ' + user.lastname,
+            firstname: user.firstname,
+            lastname: user.lastname,
+            avatar: user.avatar,
             email: email
         }
 

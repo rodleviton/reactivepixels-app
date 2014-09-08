@@ -1,55 +1,26 @@
 'use strict';
 
-app.controller('BuildController', function($scope, UserService, isAuthorised, $location) {
+app.controller('BuildController', function($scope, UserService, DataProviderService, isAuthorised, $location) {
     $scope.user = {};
     $scope.authUser = isAuthorised;
 
-    console.log($scope.authUser);
+    // Gravatar
+    $scope.user.avatar = DataProviderService.getUserAvatar($scope.authUser);
 
-    // Prefill profile image
-    if(($scope.authUser.thirdPartyUserData !== undefined) && ($scope.authUser.thirdPartyUserData.picture !== undefined)) {
+    // Prefill firstname
+    $scope.user.firstname = DataProviderService.getUserFirstname($scope.authUser);
 
-        if(($scope.authUser.thirdPartyUserData.picture.data !== undefined) && ($scope.authUser.thirdPartyUserData.picture.data.url !== undefined)) {
+    // Prefill lastname
+    $scope.user.lastname = DataProviderService.getUserLastname($scope.authUser);
 
-            // Facebook
-            $scope.user.avatar = $scope.authUser.thirdPartyUserData.picture.data.url;
+    // Submit extended user profile details
+    $scope.extendProfile = function() {
 
-        } else {
-
-            // Google
-            $scope.user.avatar = $scope.authUser.thirdPartyUserData.picture;
-        }
-    }
-
-    if($scope.authUser.md5_hash !== undefined) {
-        // Gravatar
-        $scope.user.avatar = 'http://www.gravatar.com/avatar/' + $scope.authUser.md5_hash;
-    }
-
-    // Prefill firstname (Google)
-    if(($scope.authUser.thirdPartyUserData !== undefined) && ($scope.authUser.thirdPartyUserData.given_name !== undefined)) {
-        $scope.user.firstname = $scope.authUser.thirdPartyUserData.given_name;
-    }
-
-    // Prefill firstname (Facebook)
-    if(($scope.authUser.thirdPartyUserData !== undefined) && ($scope.authUser.thirdPartyUserData.first_name !== undefined)) {
-        $scope.user.firstname = $scope.authUser.thirdPartyUserData.first_name;
-    }
-
-    // Prefill lastname (Google)
-    if(($scope.authUser.thirdPartyUserData !== undefined) && ($scope.authUser.thirdPartyUserData.family_name !== undefined)) {
-        $scope.user.lastname = $scope.authUser.thirdPartyUserData.family_name;
-    }
-
-    // Prefill lastname (Facebook)
-    if(($scope.authUser.thirdPartyUserData !== undefined) && ($scope.authUser.thirdPartyUserData.last_name !== undefined)) {
-        $scope.user.lastname = $scope.authUser.thirdPartyUserData.last_name;
-    }
-
-    $scope.build = function() {
+        // Merge object data
+        var user = $.extend($scope.authUser, $scope.user);
 
         // Create extended profile info
-        UserService.create($scope.authUser, $scope.user.username, $scope.user.firstname, $scope.user.lastname, $scope.user.avatar).then(function(response) {
+        UserService.create(user).then(function(response) {
 
             // Redirect user to their profile page
             $location.path('/' + $scope.user.username);

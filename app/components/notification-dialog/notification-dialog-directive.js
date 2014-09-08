@@ -15,6 +15,7 @@ app.directive('notificationDialog', function (AUTH_EVENTS) {
         scope.notification = '';
       };
 
+      // Auth Event Listeners
       scope.$on(AUTH_EVENTS.notAuthorised, function() {
         showDialog(AUTH_EVENTS.notAuthorised);
       });
@@ -26,6 +27,8 @@ app.directive('notificationDialog', function (AUTH_EVENTS) {
       scope.$on(AUTH_EVENTS.notAuthenticated, function() {
         showDialog(AUTH_EVENTS.notAuthenticated);
       });
+
     }
+
   };
 })
