@@ -44,6 +44,7 @@ app.factory('DataProviderService',
         dataProviderService.getUserFirstname = function(authUser) {
             var firstname = '';
 
+            // Prefill firstname (Google)
             if((authUser.thirdPartyUserData !== undefined) && (authUser.thirdPartyUserData.given_name !== undefined)) {
                 firstname = authUser.thirdPartyUserData.given_name;
             }

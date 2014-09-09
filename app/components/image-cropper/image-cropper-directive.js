@@ -31,6 +31,8 @@ app.directive('imageCropper', function($timeout, ImageUploadService) {
             $timeout(function() {
                 $('#crop').on('click', function() {
 
+                    console.log('process');
+
                     var coords = scope.coordinates(cropper);
 
                     // Add to queue for processing
