@@ -1,13 +1,12 @@
 'use strict';
 
-app.controller('ProfileController', function($scope, $firebase, userExists, isAuthenticated) {
+app.controller('ProfileController', function($scope, $firebase, routeObj) {
+    $scope.user = routeObj.user;
+    $scope.authUser = routeObj.authUser;
+    $scope.isAuthUserRoute = routeObj.isAuthUserRoute;
 
-    $scope.isAuthenticated = isAuthenticated;
-    $scope.user = userExists;
-
-    var ref = new Firebase("https://reactivepixels.firebaseio.com/users/" + $scope.user.username + "/images/");
+    var ref = new Firebase("https://reactivepixels.firebaseio.com/images/" + $scope.user.username);
     var sync = $firebase(ref);
-
     var syncObject = sync.$asObject();
     syncObject.$bindTo($scope, "images");
 

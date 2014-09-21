@@ -1,7 +1,7 @@
 'use strict';
 
 app.factory('AuthService',
-    function($q, $firebaseSimpleLogin, FIREBASE_URL, UserService, SessionService) {
+    function($q, $firebaseSimpleLogin, FIREBASE_URL) {
         var authService = {};
 
 
@@ -39,27 +39,22 @@ app.factory('AuthService',
         authService.isAuthenticated = function() {
             var deferred = $q.defer();
 
-            // Check if existing user session exists
-            if (SessionService.user.authToken !== undefined) {
+            // Check if user is authenticated
+            auth.$getCurrentUser().then(function(authUser) {
 
-                deferred.resolve(SessionService.user);
+                if (authUser) {
 
-            } else {
+                    // return authenticated users information
+                    deferred.resolve(authUser);
 
-                // Check if user is already logged in
-                auth.$getCurrentUser().then(function(auth) {
+                } else {
 
-                    if (auth) {
+                    // User not authenticated
+                    deferred.resolve(false);
+                }
 
-                        deferred.resolve(auth);
+            });
 
-                    } else {
-
-                        // User not authenticated
-                        deferred.resolve(false);
-                    }
-                });
-            }
 
             return deferred.promise;
         };

@@ -72,7 +72,7 @@ app.factory('DataProviderService',
                 lastname = authUser.thirdPartyUserData.last_name;
             }
 
-            returnlastname;
+            return lastname;
         }
 
 

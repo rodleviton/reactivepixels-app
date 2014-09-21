@@ -5,7 +5,7 @@ app.service('ImageUploadService', function ($q, $firebase, FIREBASE_URL) {
     imageUpload.addTempImage = function(username, token, data) {
 
         // Temp Upload Url
-        var tempImageRef = new Firebase(FIREBASE_URL + '/users/' + username + '/temp-uploads/' );
+        var tempImageRef = new Firebase(FIREBASE_URL + '/queues/' + username + '/temp_uploads/' );
 
         // Add temp image for user
         tempImageRef.child(token).set({
@@ -19,7 +19,7 @@ app.service('ImageUploadService', function ($q, $firebase, FIREBASE_URL) {
     imageUpload.getTempImage = function(username, token) {
 
         // Temp Upload Url
-        var tempImageRef = new Firebase(FIREBASE_URL + '/users/' + username + '/temp-uploads/' );
+        var tempImageRef = new Firebase(FIREBASE_URL + '/queues/' + username + '/temp_uploads/' );
 
         var deferred = $q.defer();
 
@@ -43,8 +43,8 @@ app.service('ImageUploadService', function ($q, $firebase, FIREBASE_URL) {
 
     imageUpload.processImage = function(token, username, data, coords) {
 
-        // Image Process Queue
-        var imageProcessRef = new Firebase(FIREBASE_URL + 'worker-queue/image-processing');
+        // Image Process Request Queue
+        var imageProcessRef = new Firebase(FIREBASE_URL + 'queues/image_processing');
 
         // Utilities
         var getFileExtension = function(filename) {
@@ -72,10 +72,10 @@ app.service('ImageUploadService', function ($q, $firebase, FIREBASE_URL) {
 
     imageUpload.getProcessedImage = function(username, token) {
 
-        // Processed Image Url
-        var processedImageRef = new Firebase(FIREBASE_URL + '/users/' + username + "/images/");
-
         var deferred = $q.defer();
+
+        // Processed Image Url
+        var processedImageRef = new Firebase(FIREBASE_URL + '/images/' + username);
 
         // Wait for signed request to be returned to user
         processedImageRef.on('child_added', function(childSnapshot) {

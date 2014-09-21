@@ -1,2 +1,8 @@
-<p>Home View</p>
-<p>{{user.displayName}}</p>
+<div class="row">
+    <div class="col-xs-6 col-md-3" ng-repeat="activity in activities">
+        <div class="thumbnail">
+          <p>{{activity.user.username}}</p>
+          <img ng-src="{{activity.image.url_thumbnail}}" class="img-responsive" />
+        </div>
+    </div>
+</div>

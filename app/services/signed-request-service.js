@@ -1,14 +1,17 @@
 'use strict';
 
 app.factory('SignedRequestService', function($q, $firebase, FIREBASE_URL) {
-    var ref = new Firebase(FIREBASE_URL + 'worker-queue/signed-requests');
+
 
     var SignedRequest = {}
 
     SignedRequest.get = function(fileType, username, token) {
 
-        // Signed Request Url
-        var signedRequestsRef = new Firebase("https://reactivepixels.firebaseio.com/users/" + username + '/signed-requests/' );
+        // Signed Request Queue
+        var ref = new Firebase(FIREBASE_URL + 'queues/signed_requests');
+
+        // Users Signed Request Ref
+        var signedRequestsRef = new Firebase(FIREBASE_URL).child('queues').child(username).child('signed_requests');
 
         var deferred = $q.defer();
 

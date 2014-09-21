@@ -1,14 +1,13 @@
 'use strict';
 
 app.factory('UserService', function($q, $firebase, $firebaseSimpleLogin, FIREBASE_URL) {
-    var ref = new Firebase(FIREBASE_URL + 'users');
+    var ref = new Firebase(FIREBASE_URL).child('users');
     var User = {}
 
     User.create = function(user) {
 
         var deferred = $q.defer();
         var email;
-
 
         if(user.provider === 'password') {
 
@@ -29,7 +28,7 @@ app.factory('UserService', function($q, $firebase, $firebaseSimpleLogin, FIREBAS
             email: email
         }
 
-        ref.child(username).setWithPriority(userRef, user.uid, function(result) {
+        ref.child(user.username).setWithPriority(userRef, user.uid, function(result) {
             if (result === null) {
                 deferred.resolve();
             }

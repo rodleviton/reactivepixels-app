@@ -18,6 +18,9 @@ angular.module('app.upload', ['ui.router', 'angularFileUpload'])
 
                                 UserService.findByUID(authUser.uid).then(function(user) {
                                     deferred.resolve(user);
+
+                                    // Extend and return the authUser object
+                                    deferred.resolve($.extend(authUser, user));
                                 });
 
                              } else {
